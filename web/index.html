@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>HomeApp</title>
+<link rel="stylesheet" href="styles.css"/>
+<script>window.API_BASE = "http://192.168.3.43:18000";</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><span class="brand">HomeApp</span><a href="#/dashboard">Дашборд</a><a href="#/transactions">Транзакции</a><a href="#/habits">Привычки</a><a href="#/categories">Категории</a><a href="#/export">Экспорт</a><span class="flex"></span><a href="#/login" id="loginLink">Войти</a><button id="logoutBtn" class="link like">Выйти</button></div></nav>
+<main id="app" class="container"></main>
+<template id="tpl-login"><div class="card narrow"><h1>Вход</h1><form id="loginForm" class="grid gap"><input name="username" placeholder="Логин" value="erik"/><input type="password" name="password" placeholder="Пароль" value="erik"/><button class="btn">Войти</button><div id="loginErr" class="err"></div></form></div></template>
+<template id="tpl-dashboard"><div class="grid two gap"><div class="card"><h2>Расходы по категориям</h2><canvas id="pie"></canvas></div><div class="card"><h2>Тренды доход/расход</h2><canvas id="line"></canvas></div></div></template>
+<template id="tpl-transactions"><div class="grid two gap"><div class="card"><h2>Новая транзакция</h2><form id="txForm" class="grid gap"><input name="amount" placeholder="Сумма"/><select name="category_id"><option value="">Категория</option></select><select name="account_id"><option value="">Счёт</option></select><input type="date" name="happened_at"/><input name="note" placeholder="Заметка"/><button class="btn">Добавить</button></form></div><div class="card"><h2>Последние транзакции</h2><div class="table-wrap"><table id="txTable"><thead><tr><th>Дата</th><th>Категория</th><th>Сумма</th><th>Заметка</th></tr></thead><tbody></tbody></table></div></div></div></template>
+<template id="tpl-habits"><div class="grid two gap"><div class="card"><h2>Добавить привычку</h2><form id="habitForm" class="row gap"><input name="title" placeholder="Название"/><button class="btn">Добавить</button></form></div><div class="card"><h2>Мои привычки</h2><ul id="habitList" class="list"></ul></div></div></template>
+<template id="tpl-categories"><div class="grid two gap"><div class="card"><h2>Новая категория</h2><form id="catForm" class="grid gap"><input name="name" placeholder="Название"/><select name="type"><option value="expense">Расход</option><option value="income">Доход</option></select><button class="btn">Добавить</button></form></div><div class="card"><h2>Мои категории</h2><ul id="catList" class="list"></ul></div></div></template>
+<template id="tpl-export"><div class="card narrow center"><h2>Экспорт</h2><p>Нужно войти, затем скачать:</p><div class="row gap"><a class="btn dark" id="csvLink" target="_blank">CSV</a><a class="btn dark" id="xlsxLink" target="_blank">Excel</a></div></div></template>
+<script src="spa.js"></script>
+</body>
+</html>
